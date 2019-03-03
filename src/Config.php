@@ -9,6 +9,7 @@ namespace Mrcnpdlk\Api\Unoconv;
 
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
+use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
 
 class Config
 {
@@ -58,7 +59,7 @@ class Config
      *
      * @param array $config
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException
      */
     public function __construct(array $config = [])
     {
@@ -72,7 +73,7 @@ class Config
             } elseif (property_exists($this, $key)) {
                 $this->{$key} = $value;
             } else {
-                throw new Exception(sprintf('Property "%s" not defined in Config class "%s"', $key, __CLASS__));
+                throw new ConfigurationException(sprintf('Property "%s" not defined in Config class "%s"', $key, __CLASS__));
             }
         }
     }
