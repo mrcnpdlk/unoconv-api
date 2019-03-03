@@ -7,7 +7,7 @@ engines:
       Naming/ShortVariable:
         enabled: true
       CleanCode/StaticAccess:
-        enabled: true
+        enabled: false
       Controversial/CamelCaseMethodName:
         enabled: true
   fixme:
