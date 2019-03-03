@@ -5,7 +5,7 @@
  * Time: 16:52
  */
 
-namespace Tests\Tvsat\Api\Xmdb;
+namespace Tests\Mrcnpdlk\Api\Unoconv;
 
 use Mrcnpdlk\Api\Unoconv\Config;
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
