@@ -5,6 +5,9 @@ parameters:
 		- tests
 	fileExtensions:
 		- php
+	ignoreErrors:
+	    - '#Mrcnpdlk\\Api\\Unoconv\\Enum\\DocType::.*#'
+	    - '#Mrcnpdlk\\Api\\Unoconv\\Enum\\FormatType::.*#'
 
 includes:
 	- vendor/phpstan/phpstan-phpunit/extension.neon
