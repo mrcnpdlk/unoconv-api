@@ -107,7 +107,7 @@ use MyCLabs\Enum\Enum;
  * @method static XLT95()
  * @method static XLSX()
  */
-class FormatType extends Enum
+final class FormatType extends Enum
 {
     public const BIB       = 'bib';
     public const DOC       = 'doc';

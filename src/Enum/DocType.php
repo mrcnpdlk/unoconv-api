@@ -17,7 +17,7 @@ use MyCLabs\Enum\Enum;
  * @method static PRESENTATION()
  * @method static SPREADSHEET()
  */
-class DocType extends Enum
+final class DocType extends Enum
 {
     public const DOCUMENT     = 'document';
     public const GRAPHICS     = 'graphics';
