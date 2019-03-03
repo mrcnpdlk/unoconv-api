@@ -8,6 +8,7 @@
 namespace Mrcnpdlk\Api\Unoconv;
 
 use mikehaertl\shellcommand\Command;
+use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
 
 /**
  * Class Api
@@ -15,7 +16,7 @@ use mikehaertl\shellcommand\Command;
 class Api
 {
     /**
-     * @var array 
+     * @var array
      */
     private $params = [];
 
@@ -36,15 +37,15 @@ class Api
     }
 
     /**
-     * @param string      $from
-     * @param string      $to
-     * @param string|null $format
+     * @param string          $from
+     * @param string          $to
+     * @param FormatType|null $format
      *
      * @throws \Mrcnpdlk\Api\Unoconv\Exception
      *
      * @return bool
      */
-    public function create(string $from, string $to, string $format = null): bool
+    public function create(string $from, string $to, FormatType $format = null): bool
     {
         $command = new Command($this->params['connection']);
         $command

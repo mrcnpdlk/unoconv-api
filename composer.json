@@ -24,6 +24,7 @@
   },
   "require": {
     "php": ">=7.2",
+    "myclabs/php-enum": "^1",
     "mikehaertl/php-shellcommand": "^1"
   },
   "require-dev": {

@@ -7,6 +7,9 @@
 
 namespace Mrcnpdlk\Api\Unoconv;
 
+use Mrcnpdlk\Api\Unoconv\Enum\DocType;
+use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
+
 class Config
 {
     /**
@@ -27,16 +30,16 @@ class Config
      * Specify the LibreOffice document type of the backend format. Possible document types are: document, graphics, presentation,
      * spreadsheet.
      *
-     * @var string
+     * @var DocType
      */
-    protected $docType = 'document';
+    protected $docType;
     /**
      * Specify the output format for the document. You can get a list of possible output formats per document type by using the --show
      * option.
      *
-     * @var string
+     * @var FormatType
      */
-    protected $format = 'pdf';
+    protected $format;
     /**
      * When unoconv starts its own listener, try to connect to it for an amount of seconds before giving up. Increasing this may help when
      * you receive random errors caused by the listener not being ready to accept conversion jobs.
@@ -59,6 +62,9 @@ class Config
      */
     public function __construct(array $config = [])
     {
+        $this->docType = DocType::DOCUMENT();
+        $this->format  = FormatType::PDF();
+
         foreach ($config as $key => $value) {
             $funName = sprintf('set%s', ucfirst($key));
             if (method_exists($this, $funName)) {
@@ -80,17 +86,17 @@ class Config
     }
 
     /**
-     * @return string
+     * @return DocType
      */
-    public function getDocType(): string
+    public function getDocType(): DocType
     {
         return $this->docType;
     }
 
     /**
-     * @return string
+     * @return FormatType
      */
-    public function getFormat(): string
+    public function getFormat(): FormatType
     {
         return $this->format;
     }
@@ -116,11 +122,11 @@ class Config
     }
 
     /**
-     * @param string $docType
+     * @param DocType $docType
      *
      * @return $this
      */
-    public function setDocType(string $docType): self
+    public function setDocType(DocType $docType): self
     {
         $this->docType = $docType;
 
@@ -128,11 +134,11 @@ class Config
     }
 
     /**
-     * @param string $format
+     * @param FormatType $format
      *
      * @return $this
      */
-    public function setFormat(string $format): self
+    public function setFormat(FormatType $format): self
     {
         $this->format = $format;
 
