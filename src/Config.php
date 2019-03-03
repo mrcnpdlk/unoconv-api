@@ -10,7 +10,11 @@ namespace Mrcnpdlk\Api\Unoconv;
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
 use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
+use Psr\Log\NullLogger;
 
+/**
+ * Class Config
+ */
 class Config
 {
     /**
@@ -52,6 +56,10 @@ class Config
      * @var string
      */
     protected $options = 'urp;StarOffice.ComponentContext';
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    protected $logger;
 
     /**
      * Config constructor.
@@ -65,6 +73,7 @@ class Config
     {
         $this->docType = DocType::DOCUMENT();
         $this->format  = FormatType::PDF();
+        $this->logger  = new NullLogger();
 
         foreach ($config as $key => $value) {
             $funName = sprintf('set%s', ucfirst($key));
@@ -100,6 +109,14 @@ class Config
     public function getFormat(): FormatType
     {
         return $this->format;
+    }
+
+    /**
+     * @return \Psr\Log\LoggerInterface
+     */
+    public function getLogger(): \Psr\Log\LoggerInterface
+    {
+        return $this->logger;
     }
 
     /**
@@ -154,6 +171,18 @@ class Config
     public function setHost(string $host): self
     {
         $this->host = $host;
+
+        return $this;
+    }
+
+    /**
+     * @param \Psr\Log\LoggerInterface $logger
+     *
+     * @return $this
+     */
+    public function setLogger(\Psr\Log\LoggerInterface $logger): self
+    {
+        $this->logger = $logger;
 
         return $this;
     }
