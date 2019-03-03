@@ -1,0 +1,59 @@
+{
+  "name": "mrcnpdlk/unoconv-api",
+  "license": "proprietary",
+  "homepage": "https://github.com/mrcnpdlk/unoconv-api",
+  "authors": [
+    {
+      "name": "Marcin Pudełek",
+      "email": "marcin@pudelek.org.pl",
+      "role": "Developer"
+    }
+  ],
+  "description": "Unoconv API",
+  "type": "library",
+  "time": "2019-03-03",
+  "keywords": [
+    "unoconv",
+    "libreoffice",
+    "pdf",
+    "docx",
+    "convert"
+  ],
+  "config": {
+    "optimize-autoloader": true
+  },
+  "require": {
+    "php": ">=7.2"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^7",
+    "phpunit/php-code-coverage": "^6",
+    "friendsofphp/php-cs-fixer": "^2",
+    "phpstan/phpstan": "^0",
+    "phpstan/phpstan-phpunit": "^0",
+    "jangregor/phpstan-prophecy": "^0"
+  },
+  "minimum-stability": "stable",
+  "prefer-stable": true,
+  "autoload": {
+    "psr-4": {
+      "Mrcnpdlk\\Api\\Unoconv\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Tests\\Tvsat\\Api\\Xmdb\\": "tests/suits/"
+    }
+  },
+  "scripts": {
+    "test": [
+      "@phpstan",
+      "@lint",
+      "@phpunit"
+    ],
+    "phpunit": "phpunit --configuration phpunit.xml --coverage-text --colors=never",
+    "phpstan": "phpstan analyse",
+    "fixer": "php-cs-fixer fix --diff --show-progress=dots",
+    "lint": "php-cs-fixer fix --diff --dry-run"
+  }
+}
