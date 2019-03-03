@@ -79,8 +79,8 @@ Parameters:
 | Parameter     | Type                | Description                                                  |
 | ------------- | ------------------- | ------------------------------------------------------------ |
 | `sourceFile`  | `string`            | Valid path of input file. Otherwise `InvalidFileArgumentException` is thrown. |
-| `format`      | `FormatType`|`NULL` | If `NULL` default value form Config object is taken.         |
-| `destination` | `string`|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
+| `format`      | `FormatType|NULL` | If `NULL` default value form Config object is taken.         |
+| `destination` | `string|NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
 
 ## License
 
