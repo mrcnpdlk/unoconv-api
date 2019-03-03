@@ -9,6 +9,8 @@ namespace Mrcnpdlk\Api\Unoconv;
 
 use mikehaertl\shellcommand\Command;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
+use Mrcnpdlk\Api\Unoconv\Exception\UnoconvException;
+use SplFileObject;
 
 /**
  * Class Api
@@ -41,11 +43,10 @@ class Api
      * @param string          $to
      * @param FormatType|null $format
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
-     *
-     * @return bool
+     * @return SplFileObject
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
      */
-    public function create(string $from, string $to, FormatType $format = null): bool
+    public function create(string $from, string $to, FormatType $format = null): SplFileObject
     {
         $command = new Command($this->params['connection']);
         $command
@@ -57,8 +58,8 @@ class Api
         ;
 
         if ($command->execute()) {
-            return true;
+            return new SplFileObject($to);
         }
-        throw new Exception(sprintf('Unoconv error: %s', $command->getError()), $command->getExitCode());
+        throw new UnoconvException(sprintf('Unoconv error: %s', $command->getError()), $command->getExitCode());
     }
 }
