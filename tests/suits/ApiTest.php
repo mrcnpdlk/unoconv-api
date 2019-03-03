@@ -5,7 +5,7 @@
  * Time: 17:07
  */
 
-namespace Tests\Tvsat\Api\Xmdb;
+namespace Tests\Mrcnpdlk\Api\Unoconv;
 
 use Mrcnpdlk\Api\Unoconv\Api;
 use Mrcnpdlk\Api\Unoconv\Config;
