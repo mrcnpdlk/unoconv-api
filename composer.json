@@ -23,7 +23,8 @@
     "optimize-autoloader": true
   },
   "require": {
-    "php": ">=7.2"
+    "php": ">=7.2",
+    "mikehaertl/php-shellcommand": "^1"
   },
   "require-dev": {
     "phpunit/phpunit": "^7",
