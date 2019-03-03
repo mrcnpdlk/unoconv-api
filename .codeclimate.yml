@@ -3,13 +3,13 @@ engines:
     enabled: true
     checks:
       Design/TooManyPublicMethods:
-        enabled: false
+        enabled: true
       Naming/ShortVariable:
-        enabled: false
+        enabled: true
       CleanCode/StaticAccess:
-        enabled: false
+        enabled: true
       Controversial/CamelCaseMethodName:
-        enabled: false
+        enabled: true
   fixme:
     enabled: true
   duplication:

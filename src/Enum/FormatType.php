@@ -7,6 +7,7 @@
 
 namespace Mrcnpdlk\Api\Unoconv\Enum;
 
+use Mrcnpdlk\Api\Unoconv\Exception;
 use MyCLabs\Enum\Enum;
 
 /**
@@ -203,4 +204,114 @@ final class FormatType extends Enum
     public const XLT5      = 'xlt5';
     public const XLT95     = 'xlt95';
     public const XLSX      = 'xlsx';
+
+    /**
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     *
+     * @return string
+     */
+    public function getExtension(): string
+    {
+        $tMap = [
+            self::BIB       => 'bib',
+            self::DOC       => 'doc',
+            self::DOC6      => 'doc',
+            self::DOC95     => 'doc',
+            self::DOCBOOK   => 'xml',
+            self::DOCX      => 'docx',
+            self::DOCX7     => 'docx',
+            self::FODT      => 'fodt',
+            self::HTML      => 'html',
+            self::LATEX     => 'ltx',
+            self::MEDIAWIKI => 'txt',
+            self::ODT       => 'odt',
+            self::OOXML     => 'xml',
+            self::OTT       => 'ott',
+            self::PDB       => 'pdb',
+            self::PDF       => 'pdf',
+            self::PSW       => 'psw',
+            self::RTF       => 'rtf',
+            self::SDW       => 'sdw',
+            self::SDW4      => 'sdw',
+            self::SDW3      => 'sdw',
+            self::STW       => 'stw',
+            self::SXW       => 'sxw',
+            self::TEXT      => 'txt',
+            self::TXT       => 'txt',
+            self::UOT       => 'uot',
+            self::VOR       => 'vor',
+            self::VOR4      => 'vor',
+            self::VOR3      => 'vor',
+            self::WPS       => 'wps',
+            self::XHTML     => 'html',
+            self::BMP       => 'bmp',
+            self::EMF       => 'emf',
+            self::EPS       => 'eps',
+            self::FODG      => 'fodg',
+            self::GIF       => 'gif',
+            self::JPG       => 'jpg',
+            self::MET       => 'met',
+            self::ODD       => 'odd',
+            self::OTG       => 'otg',
+            self::PBM       => 'pbm',
+            self::PCT       => 'pct',
+            self::PGM       => 'pgm',
+            self::PNG       => 'png',
+            self::PPM       => 'ppm',
+            self::RAS       => 'ras',
+            self::STD       => 'std',
+            self::SVG       => 'svg',
+            self::SVM       => 'svm',
+            self::SWF       => 'swf',
+            self::SXD       => 'sxd',
+            self::SXD3      => 'sxd',
+            self::SXD5      => 'sxd',
+            self::TIFF      => 'tiff',
+            self::WMF       => 'wmf',
+            self::XPM       => 'xpm',
+            self::ODG       => 'odg',
+            self::ODP       => 'odp',
+            self::OTP       => 'otp',
+            self::POTM      => 'potm',
+            self::POT       => 'pot',
+            self::PPTX      => 'pptx',
+            self::PPS       => 'pps',
+            self::PPT       => 'ppt',
+            self::PWP       => 'pwp',
+            self::SDA       => 'sda',
+            self::SDD       => 'sdd',
+            self::SDD3      => 'sdd',
+            self::SDD4      => 'sdd',
+            self::STI       => 'sti',
+            self::SXI       => 'sxi',
+            self::UOP       => 'uop',
+            self::VOR5      => 'vor',
+            self::CSV       => 'csv',
+            self::DBF       => 'dbf',
+            self::DIF       => 'dif',
+            self::FODS      => 'fods',
+            self::ODS       => 'ods',
+            self::OTS       => 'ots',
+            self::PXL       => 'pxl',
+            self::SDC       => 'sdc',
+            self::SDC4      => 'sdc',
+            self::SDC3      => 'sdc',
+            self::SLK       => 'slk',
+            self::STC       => 'stc',
+            self::SXC       => 'sxc',
+            self::UOS       => 'uos',
+            self::XLS       => 'xls',
+            self::XLS5      => 'xls',
+            self::XLS95     => 'xls',
+            self::XLT       => 'xlt',
+            self::XLT5      => 'xlt',
+            self::XLT95     => 'xlt',
+            self::XLSX      => 'xlsx',
+        ];
+
+        if (isset($tMap[$this->getValue()])) {
+            return $tMap[$this->getValue()];
+        }
+        throw new Exception(sprintf('Default extension form "%s" not defined', $this->getKey()));
+    }
 }
