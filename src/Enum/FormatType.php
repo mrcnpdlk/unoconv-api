@@ -11,6 +11,7 @@ use MyCLabs\Enum\Enum;
 
 /**
  * Class FormatType
+ *
  * @method static BIB()
  * @method static DOC()
  * @method static DOC6()

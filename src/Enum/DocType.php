@@ -11,6 +11,7 @@ use MyCLabs\Enum\Enum;
 
 /**
  * Class DocType
+ *
  * @method static DOCUMENT()
  * @method static GRAPHICS()
  * @method static PRESENTATION()
