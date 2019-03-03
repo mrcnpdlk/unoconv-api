@@ -35,12 +35,19 @@ composer require mrcnpdlk/unoconv-api
 
 ```php
 <?php
+use Monolog\Handler\ErrorLogHandler;
+use Psr\Log\LogLevel;
 
 require __DIR__ . '/../vendor/autoload.php';
+
+// Logger instance
+$logger = new \Monolog\Logger('unoconv-api');
+$logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, LogLevel::DEBUG));
 
 // Set default value for handler
 $oConfig = new \Mrcnpdlk\Api\Unoconv\Config([
     'binary' => '/usr/bin/unoconv'
+    'logger' => $logger
 ]);
 $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 ```
@@ -69,11 +76,11 @@ var_dump($res);
 
 Parameters:
 
-| Parameter | Type                | Description                                                  |
-| --------- | ------------------- | ------------------------------------------------------------ |
-| `from`    | `string`            | Valid path of input file. Otherwise `InvalidFileArgumentException` is thrown. |
-| `format`  | `FormatType`|`NULL` | If `NULL` default value form Config object is taken.         |
-| `to`      | `string`|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `to` is valid directory path then output file is saved into this directory. |
+| Parameter     | Type                | Description                                                  |
+| ------------- | ------------------- | ------------------------------------------------------------ |
+| `sourceFile`  | `string`            | Valid path of input file. Otherwise `InvalidFileArgumentException` is thrown. |
+| `format`      | `FormatType`|`NULL` | If `NULL` default value form Config object is taken.         |
+| `destination` | `string`|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
 
 ## License
 

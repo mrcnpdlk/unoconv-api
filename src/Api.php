@@ -22,6 +22,10 @@ class Api
      * @var array
      */
     private $params = [];
+    /**
+     * @var \Psr\Log\LoggerInterface
+     */
+    private $logger;
 
     /**
      * Api constructor.
@@ -33,6 +37,7 @@ class Api
     public function __construct(Config $oConfig = null)
     {
         $oConfig                    = $oConfig ?? new Config();
+        $this->logger               = $oConfig->getLogger();
         $this->params['connection'] = $oConfig->getConnectionString();
         $this->params['timeout']    = $oConfig->getTimeout();
         $this->params['docType']    = $oConfig->getDocType();
@@ -40,9 +45,9 @@ class Api
     }
 
     /**
-     * @param string          $from   Path to input file
-     * @param FormatType|null $format Default PDF
-     * @param string|null     $to     Path to output file or directory
+     * @param string          $sourceFile  Path to input file
+     * @param FormatType|null $format      Default PDF
+     * @param string|null     $destination Path to output file or directory
      *
      * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
@@ -50,47 +55,49 @@ class Api
      *
      * @return SplFileObject
      */
-    public function transcode(string $from, FormatType $format = null, string $to = null): SplFileObject
+    public function transcode(string $sourceFile, FormatType $format = null, string $destination = null): SplFileObject
     {
-        $from = realpath($from);
+        $sourceFile = realpath($sourceFile);
 
-        if (!is_file($from)) {
-            throw new InvalidFileArgumentException(sprintf('Input file "%s" not exists', $from));
+        if (!is_file($sourceFile)) {
+            throw new InvalidFileArgumentException(sprintf('Input file "%s" not exists', $sourceFile));
         }
-        if (!is_readable($from)) {
-            throw new InvalidFileArgumentException(sprintf('Input file "%s" is not readable', $from));
+        if (!is_readable($sourceFile)) {
+            throw new InvalidFileArgumentException(sprintf('Input file "%s" is not readable', $sourceFile));
         }
 
         $format       = $format ?? $this->params['format'];
-        $fromPathInfo = pathinfo($from);
+        $fromPathInfo = pathinfo($sourceFile);
 
-        if (null === $to) {
-            $to = sprintf('%s%s%s.%s',
+        if (null === $destination) {
+            $destination = sprintf('%s%s%s.%s',
                 $fromPathInfo['dirname'],
                 DIRECTORY_SEPARATOR,
                 $fromPathInfo['filename'],
                 $format->getExtension()
             );
-        } elseif (is_dir($to)) {
-            $to = sprintf('%s%s%s.%s',
-                $to,
+        } elseif (is_dir($destination)) {
+            $destination = sprintf('%s%s%s.%s',
+                $destination,
                 DIRECTORY_SEPARATOR,
                 $fromPathInfo['filename'],
                 $format->getExtension()
             );
         }
+
+        $this->logger->debug(sprintf('Creating "%s" from "%s"', $destination, $sourceFile));
 
         $command = new Command($this->params['connection']);
         $command
             ->addArg('--doctype', $this->params['docType'], false)
             ->addArg('--format', $format, false)
             ->addArg('--timeout', $this->params['timeout'], false)
-            ->addArg('--output', $to)
-            ->addArg($from)
+            ->addArg('--output', $destination)
+            ->addArg($sourceFile)
         ;
 
         if ($command->execute()) {
-            return new SplFileObject($to);
+            return new SplFileObject($destination);
         }
         throw new UnoconvException(sprintf('Unoconv error: %s', $command->getError()), $command->getExitCode());
     }
