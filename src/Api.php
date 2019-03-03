@@ -43,8 +43,9 @@ class Api
      * @param string          $to
      * @param FormatType|null $format
      *
-     * @return SplFileObject
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     *
+     * @return SplFileObject
      */
     public function create(string $from, string $to, FormatType $format = null): SplFileObject
     {

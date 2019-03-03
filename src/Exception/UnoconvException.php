@@ -7,10 +7,8 @@
 
 namespace Mrcnpdlk\Api\Unoconv\Exception;
 
-
 use Mrcnpdlk\Api\Unoconv\Exception;
 
 class UnoconvException extends Exception
 {
-
 }
