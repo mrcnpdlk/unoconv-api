@@ -37,6 +37,9 @@
     "jangregor/phpstan-prophecy": "^0",
     "monolog/monolog": "^1"
   },
+  "suggest": {
+    "monolog/monolog": "Allows more advanced logging of the application flow"
+  },
   "minimum-stability": "stable",
   "prefer-stable": true,
   "autoload": {

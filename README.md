@@ -70,7 +70,7 @@ Detailed documentation you can find [here](https://linux.die.net/man/1/unoconv).
 ### Create document
 
 ```php
-$res     = $oApi->transcode($from, $format, $output);
+$res     = $oApi->transcode($sourceFile, $format, $destination);
 var_dump($res);
 ```
 
