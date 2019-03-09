@@ -45,10 +45,10 @@ class Api
     }
 
     /**
-     * @param string              $sourceFile  Path to input file
-     * @param FormatType|null     $format      Default PDF
-     * @param string|null         $destination Path to output file or directory
-     * @param array[string]string $exportOpts  Export options
+     * @param string          $sourceFile  Path to input file
+     * @param FormatType|null $format      Default PDF
+     * @param string|null     $destination Path to output file or directory
+     * @param string[]        $exportOpts  Export options
      *
      * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException

@@ -40,7 +40,7 @@ class ApiTest extends TestCase
         $oApi     = new Api();
         $testFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'test.docx';
         file_put_contents($testFile, null);
-        $oApi->transcode($testFile, FormatType::PDF());
+        $oApi->transcode($testFile, FormatType::PDF(), null);
         @unlink($testFile);
     }
 
@@ -57,6 +57,6 @@ class ApiTest extends TestCase
             'binary' => '/some/binary/file',
         ]);
         $oApi     = new Api();
-        $oApi->transcode('foo_bar.test', FormatType::PDF());
+        $oApi->transcode('foo_bar.test', FormatType::PDF(), null);
     }
 }
