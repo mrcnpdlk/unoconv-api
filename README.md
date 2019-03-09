@@ -74,7 +74,7 @@ $res     = $oApi->transcode($sourceFile, $format, $destination, $exportOpts);
 var_dump($res);
 ```
 
-Parameters:
+Parameters `transcode` method:
 
 | Parameter     | Type                | Description                                                  |
 | ------------- | ------------------- | ------------------------------------------------------------ |
@@ -82,6 +82,18 @@ Parameters:
 | `format`      | `FormatType`\|`NULL` | If `NULL` default value form Config object is taken.         |
 | `destination` | `string`\|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
 | `exportOpts` | `array` | Array of export options. See [the list](http://www.linux-magazine.com/Issues/2018/208/Command-Line-unoconv/(offset)/3) |
+
+Example:
+
+```php
+$oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
+
+$from = __DIR__ . '/../devel/test.docx';
+$res  = $oApi->transcode($from, null, __DIR__, [
+    ExportType::PageRange => '1-2',
+]);
+var_dump($res);
+```
 
 ## License
 
