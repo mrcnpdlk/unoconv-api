@@ -45,9 +45,10 @@ class Api
     }
 
     /**
-     * @param string          $sourceFile  Path to input file
-     * @param FormatType|null $format      Default PDF
-     * @param string|null     $destination Path to output file or directory
+     * @param string              $sourceFile  Path to input file
+     * @param FormatType|null     $format      Default PDF
+     * @param string|null         $destination Path to output file or directory
+     * @param array[string]string $exportOpts  Export options
      *
      * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
@@ -55,7 +56,7 @@ class Api
      *
      * @return SplFileObject
      */
-    public function transcode(string $sourceFile, FormatType $format = null, string $destination = null): SplFileObject
+    public function transcode(string $sourceFile, ?FormatType $format, ?string $destination, array $exportOpts = []): SplFileObject
     {
         $sourceFile = realpath($sourceFile);
 
@@ -92,9 +93,16 @@ class Api
             ->addArg('--doctype', $this->params['docType'], false)
             ->addArg('--format', $format, false)
             ->addArg('--timeout', $this->params['timeout'], false)
-            ->addArg('--output', $destination)
-            ->addArg($sourceFile)
+            ->addArg('--output', $destination, false)
         ;
+
+        foreach ($exportOpts as $key => $value) {
+            $command->addArg('--export', sprintf('%s=%s', $key, $value), false);
+        }
+
+        $command->addArg($sourceFile);
+
+        $this->logger->debug(sprintf('Executing command: %s', $command->getExecCommand()));
 
         if ($command->execute()) {
             return new SplFileObject($destination);

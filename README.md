@@ -46,8 +46,8 @@ $logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, LogL
 
 // Set default value for handler
 $oConfig = new \Mrcnpdlk\Api\Unoconv\Config([
-    'binary' => '/usr/bin/unoconv'
-    'logger' => $logger
+    'binary' => '/usr/bin/unoconv',
+    'logger' => $logger,
 ]);
 $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 ```
@@ -70,7 +70,7 @@ Detailed documentation you can find [here](https://linux.die.net/man/1/unoconv).
 ### Create document
 
 ```php
-$res     = $oApi->transcode($sourceFile, $format, $destination);
+$res     = $oApi->transcode($sourceFile, $format, $destination, $exportOpts);
 var_dump($res);
 ```
 
@@ -81,6 +81,7 @@ Parameters:
 | `sourceFile`  | `string`            | Valid path of input file. Otherwise `InvalidFileArgumentException` is thrown. |
 | `format`      | `FormatType`\|`NULL` | If `NULL` default value form Config object is taken.         |
 | `destination` | `string`\|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
+| `exportOpts` | `array` | Array of export options. See [the list](http://www.linux-magazine.com/Issues/2018/208/Command-Line-unoconv/(offset)/3) |
 
 ## License
 
