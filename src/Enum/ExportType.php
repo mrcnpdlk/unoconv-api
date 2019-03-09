@@ -14,6 +14,7 @@ use MyCLabs\Enum\Enum;
  *
  * @see http://www.linux-magazine.com/Issues/2018/208/Command-Line-unoconv/(offset)/3
  * @see http://manpages.ubuntu.com/manpages/trusty/man1/unoconv.1.html
+ * @see https://github.com/unoconv/unoconv/blob/master/doc/filters.adoc
  *
  * @method static AllowDuplicateFieldNames()
  * @method static CenterWindow()
@@ -53,6 +54,7 @@ use MyCLabs\Enum\Enum;
  * @method static ReduceImageResolution()
  * @method static ResizeWindowToInitialPage()
  * @method static RestrictPermissionPassword()
+ * @method static RestrictPermissions()
  * @method static Selection()
  * @method static SelectPdfVersion()
  * @method static UseLosslessCompression()
@@ -101,6 +103,7 @@ final class ExportType extends Enum
     public const ReduceImageResolution                 = 'ReduceImageResolution';
     public const ResizeWindowToInitialPage             = 'ResizeWindowToInitialPage';
     public const RestrictPermissionPassword            = 'RestrictPermissionPassword';
+    public const RestrictPermissions                   = 'RestrictPermissions';
     public const Selection                             = 'Selection';
     public const SelectPdfVersion                      = 'SelectPdfVersion';
     public const UseLosslessCompression                = 'UseLosslessCompression';
