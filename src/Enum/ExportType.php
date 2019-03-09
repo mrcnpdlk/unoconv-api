@@ -61,7 +61,7 @@ use MyCLabs\Enum\Enum;
  * @method static Watermark()
  * @method static Zoom()
  */
-class ExportType extends Enum
+final class ExportType extends Enum
 {
     public const AllowDuplicateFieldNames              = 'AllowDuplicateFieldNames';
     public const CenterWindow                          = 'CenterWindow';
