@@ -46,8 +46,8 @@ $logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, LogL
 
 // Set default value for handler
 $oConfig = new \Mrcnpdlk\Api\Unoconv\Config([
-    'binary' => '/usr/bin/unoconv'
-    'logger' => $logger
+    'binary' => '/usr/bin/unoconv',
+    'logger' => $logger,
 ]);
 $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 ```
@@ -70,17 +70,37 @@ Detailed documentation you can find [here](https://linux.die.net/man/1/unoconv).
 ### Create document
 
 ```php
-$res     = $oApi->transcode($sourceFile, $format, $destination);
+$res     = $oApi->transcode($sourceFile, $format, $destination, $exportOpts);
 var_dump($res);
 ```
 
-Parameters:
+Parameters `transcode` method:
 
 | Parameter     | Type                | Description                                                  |
 | ------------- | ------------------- | ------------------------------------------------------------ |
 | `sourceFile`  | `string`            | Valid path of input file. Otherwise `InvalidFileArgumentException` is thrown. |
 | `format`      | `FormatType`\|`NULL` | If `NULL` default value form Config object is taken.         |
 | `destination` | `string`\|`NULL`     | If `NULL` directory of input file and default extension for Format is taken. If `sourceFile` is valid directory path then output file is saved into this directory. |
+| `exportOpts` | `array` | Array of export options. See [the list](https://github.com/unoconv/unoconv/blob/master/doc/filters.adoc) |
+
+Example:
+
+```php
+$oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
+
+$from = __DIR__ . '/../devel/test.docx';
+$res  = $oApi->transcode($from, null, __DIR__, [
+    ExportType::PageRange              => '"1-1"', // page range (string)
+    ExportType::Watermark              => '"FOO bar BAZ"', // watermark text (string)
+    ExportType::Printing               => 0, // printing permission (int)
+    ExportType::RestrictPermissions    => 'true',
+    ExportType::PermissionPassword     => '"password1"',
+    ExportType::EnableCopyingOfContent => 'false', // copy permission (bool)
+    ExportType::Changes                => 0, // changes permission (int)
+    ExportType::DocumentOpenPassword   => '"password2"', // password to open file (string)
+]);
+var_dump($res);
+```
 
 ## License
 
