@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by Marcin.
  * Date: 03.03.2019
@@ -10,7 +11,10 @@ namespace Mrcnpdlk\Api\Unoconv;
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
 use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
-use Psr\Log\NullLogger;
+use /* @noinspection PhpUndefinedClassInspection */
+    Psr\Log\LoggerInterface;
+use /* @noinspection PhpUndefinedClassInspection */
+    Psr\Log\NullLogger;
 
 /**
  * Class Config
@@ -56,6 +60,7 @@ class Config
      * @var string
      */
     protected $options = 'urp;StarOffice.ComponentContext';
+    /** @noinspection PhpUndefinedClassInspection */
     /**
      * @var \Psr\Log\LoggerInterface
      */
@@ -73,7 +78,8 @@ class Config
     {
         $this->docType = DocType::DOCUMENT();
         $this->format  = FormatType::PDF();
-        $this->logger  = new NullLogger();
+        /* @noinspection PhpUndefinedClassInspection */
+        $this->logger = new NullLogger();
 
         foreach ($config as $key => $value) {
             $funName = sprintf('set%s', ucfirst($key));
@@ -111,10 +117,12 @@ class Config
         return $this->format;
     }
 
+    /** @noinspection PhpUndefinedClassInspection */
+
     /**
      * @return \Psr\Log\LoggerInterface
      */
-    public function getLogger(): \Psr\Log\LoggerInterface
+    public function getLogger(): LoggerInterface
     {
         return $this->logger;
     }
@@ -175,12 +183,14 @@ class Config
         return $this;
     }
 
+    /** @noinspection PhpUndefinedClassInspection */
+
     /**
      * @param \Psr\Log\LoggerInterface $logger
      *
      * @return $this
      */
-    public function setLogger(\Psr\Log\LoggerInterface $logger): self
+    public function setLogger(LoggerInterface $logger): self
     {
         $this->logger = $logger;
 

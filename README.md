@@ -90,14 +90,14 @@ $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 
 $from = __DIR__ . '/../devel/test.docx';
 $res  = $oApi->transcode($from, null, __DIR__, [
-    ExportType::PageRange              => '"1-1"', // page range (string)
-    ExportType::Watermark              => '"FOO bar BAZ"', // watermark text (string)
+    ExportType::PageRange              => '1-1', // page range (string)
+    ExportType::Watermark              => 'FOO bar BAZ', // watermark text (string)
     ExportType::Printing               => 0, // printing permission (int)
-    ExportType::RestrictPermissions    => 'true',
-    ExportType::PermissionPassword     => '"password1"',
-    ExportType::EnableCopyingOfContent => 'false', // copy permission (bool)
+    ExportType::RestrictPermissions    => true, // restrict permission (bool)
+    ExportType::PermissionPassword     => 'password1',
+    ExportType::EnableCopyingOfContent => false, // copy permission (bool)
     ExportType::Changes                => 0, // changes permission (int)
-    ExportType::DocumentOpenPassword   => '"password2"', // password to open file (string)
+    ExportType::DocumentOpenPassword   => 'password2', // password to open file (string)
 ]);
 var_dump($res);
 ```

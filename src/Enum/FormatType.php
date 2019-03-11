@@ -7,7 +7,7 @@
 
 namespace Mrcnpdlk\Api\Unoconv\Enum;
 
-use Mrcnpdlk\Api\Unoconv\Exception;
+use Mrcnpdlk\Api\Unoconv\Exception\DomainException;
 use MyCLabs\Enum\Enum;
 
 /**
@@ -206,7 +206,7 @@ final class FormatType extends Enum
     public const XLSX      = 'xlsx';
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      *
      * @return string
      */
@@ -312,6 +312,6 @@ final class FormatType extends Enum
         if (isset($tMap[$this->getValue()])) {
             return $tMap[$this->getValue()];
         }
-        throw new Exception(sprintf('Default extension form "%s" not defined', $this->getKey()));
+        throw new DomainException(sprintf('Default extension form "%s" not defined', $this->getKey()));
     }
 }
