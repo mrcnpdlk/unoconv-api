@@ -22,6 +22,7 @@ class Api
      * @var array
      */
     private $params = [];
+    /** @noinspection PhpUndefinedClassInspection */
     /**
      * @var \Psr\Log\LoggerInterface
      */
