@@ -97,6 +97,18 @@ class Api
         ;
 
         foreach ($exportOpts as $key => $value) {
+            if (is_bool($value)) {
+                $value = $value ? 'true' : 'false';
+            } elseif (is_string($value)) {
+                $value = sprintf('"%s"', $value);
+            } elseif (!is_int($value)) {
+                throw new Exception(
+                    sprintf('Invalid type of export argument "%s", only %s are allowed.',
+                        gettype($value),
+                        implode(',', ['int', 'string', 'bool']))
+                );
+            }
+
             $command->addArg('--export', sprintf('%s=%s', $key, $value), false);
         }
 
