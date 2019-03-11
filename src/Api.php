@@ -9,6 +9,7 @@ namespace Mrcnpdlk\Api\Unoconv;
 
 use mikehaertl\shellcommand\Command;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
+use Mrcnpdlk\Api\Unoconv\Exception\DomainException;
 use Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException;
 use Mrcnpdlk\Api\Unoconv\Exception\UnoconvException;
 use SplFileObject;
@@ -49,9 +50,9 @@ class Api
      * @param string          $sourceFile  Path to input file
      * @param FormatType|null $format      Default PDF
      * @param string|null     $destination Path to output file or directory
-     * @param string[]        $exportOpts  Export options
+     * @param array           $exportOpts  Export options
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
      *
@@ -103,7 +104,7 @@ class Api
             } elseif (is_string($value)) {
                 $value = sprintf('"%s"', $value);
             } elseif (!is_int($value)) {
-                throw new Exception(
+                throw new DomainException(
                     sprintf('Invalid type of export argument "%s", only %s are allowed.',
                         gettype($value),
                         implode(',', ['int', 'string', 'bool']))
