@@ -104,4 +104,20 @@ class ApiTest extends TestCase
         ]);
         @unlink($testFile);
     }
+
+    /**
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     */
+    public function testWs_invalid_1(): void
+    {
+        $this->expectException(UnoconvException::class);
+
+        $oApi     = new Api();
+        $testFile = sys_get_temp_dir() . DIRECTORY_SEPARATOR . 'test.docx';
+        file_put_contents($testFile, null);
+        $oApi->wsGetPdf($testFile, sys_get_temp_dir());
+        @unlink($testFile);
+    }
 }

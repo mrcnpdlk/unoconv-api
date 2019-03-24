@@ -54,16 +54,17 @@ $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 
 ### Config option
 
-| Property  | Default value                     | Type            | Description                             |
-| --------- | --------------------------------- | --------------- | --------------------------------------- |
-| `binary`  | `/usr/bin/unoconv`                | string          | executable `unoconv` library            |
-| `host`    | `localhost`                       | string          | Host where libreoffice server is listen |
-| `port`    | `2002`                            | int             | Port where libreoffice server is listen |
-| `docType` | `DocType::DOCUMENT()`             | DocType         | Document type                           |
-| `format`  | `FormatType::PDF()`               | FormatType      | Output format                           |
-| `timeout` | `60`                              | int             | Connection timeout                      |
-| `options` | `urp;StarOffice.ComponentContext` | string          | Connection option                       |
-| `logger`  | `NullLogger` instance             | LoggerInterface | Logger                                  |
+| Property     | Default value                     | Type            | Description                                                  |
+| ------------ | --------------------------------- | --------------- | ------------------------------------------------------------ |
+| `binary`     | `/usr/bin/unoconv`                | string          | executable `unoconv` library                                 |
+| `host`       | `localhost`                       | string          | Host where libreoffice server is listen                      |
+| `port`       | `2002`                            | int             | Port where libreoffice server is listen                      |
+| `docType`    | `DocType::DOCUMENT()`             | DocType         | Document type                                                |
+| `format`     | `FormatType::PDF()`               | FormatType      | Output format                                                |
+| `timeout`    | `60`                              | int             | Connection timeout                                           |
+| `options`    | `urp;StarOffice.ComponentContext` | string          | Connection option                                            |
+| `logger`     | `NullLogger` instance             | LoggerInterface | Logger                                                       |
+| `webservice` | `http://localhost:3000`           | string          | External WebService url, [see](https://github.com/zrrrzzt/docker-unoconv-webservice) |
 
 Detailed documentation you can find [here](https://linux.die.net/man/1/unoconv).
 
@@ -101,6 +102,31 @@ $res  = $oApi->transcode($from, null, __DIR__, [
 ]);
 var_dump($res);
 ```
+
+## Webservice
+
+Api supports dockerized unoconv webservice for generating simple PDF file.
+
+To start container write`docker-compose.yml` and just `docker-compose up -d`
+
+```
+version: "3.7"
+services:
+  app:
+    image: zrrrzzt/docker-unoconv-webservice:10.14.0
+    ports:
+      - 3000:3000
+    environment:
+      - PAYLOAD_MAX_SIZE=5242880
+    restart: unless-stopped
+```
+
+```php
+$res     = $oApi->wsGetPdf($sourceFile, $destination);
+var_dump($res);
+```
+
+
 
 ## License
 
