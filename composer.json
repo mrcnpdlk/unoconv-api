@@ -24,6 +24,8 @@
   },
   "require": {
     "php": ">=7.2",
+    "ext-curl": "*",
+    "ext-json": "*",
     "myclabs/php-enum": "^1",
     "psr/log": "^1",
     "mikehaertl/php-shellcommand": "^1"

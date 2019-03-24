@@ -11,10 +11,8 @@ namespace Mrcnpdlk\Api\Unoconv;
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
 use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
-use /* @noinspection PhpUndefinedClassInspection */
-    Psr\Log\LoggerInterface;
-use /* @noinspection PhpUndefinedClassInspection */
-    Psr\Log\NullLogger;
+use Psr\Log\LoggerInterface;
+use Psr\Log\NullLogger;
 
 /**
  * Class Config
@@ -65,6 +63,14 @@ class Config
      * @var \Psr\Log\LoggerInterface
      */
     protected $logger;
+    /**
+     * Webservice url
+     *
+     * @see https://hub.docker.com/r/zrrrzzt/docker-unoconv-webservice
+     *
+     * @var string
+     */
+    protected $webservice = 'http://localhost:3000';
 
     /**
      * Config constructor.
@@ -133,6 +139,14 @@ class Config
     public function getTimeout(): int
     {
         return $this->timeout;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebservice(): string
+    {
+        return $this->webservice;
     }
 
     /**
@@ -217,6 +231,18 @@ class Config
     public function setTimeout(int $timeout): self
     {
         $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
+     * @param string $webservice
+     *
+     * @return Config
+     */
+    public function setWebservice(string $webservice): Config
+    {
+        $this->webservice = $webservice;
 
         return $this;
     }
