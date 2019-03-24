@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.4.0] - 2019-03-24
 ### Added
+- Changelog file
 - [webservice](https://github.com/zrrrzzt/docker-unoconv-webservice) support - generating PDF via external dockerized service
 ## [0.3.0] - 2019-03-11
 ### Changed
@@ -32,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.0.1] - 2019-03-03
 
 [Unreleased]: https://gitlab.widzew.net/php-composer/api-flussonic/compare/0.4.0...devel
-[0.4.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.2.0...0.4.0
+[0.4.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.1.1...0.2.0
 [0.1.1]: https://github.com/mrcnpdlk/unoconv-api/compare/0.1.0...0.1.1
