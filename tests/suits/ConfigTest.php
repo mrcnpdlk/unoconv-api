@@ -10,13 +10,13 @@ namespace Tests\Mrcnpdlk\Api\Unoconv;
 use Mrcnpdlk\Api\Unoconv\Config;
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
-use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
+use Mrcnpdlk\Lib\ConfigurationException;
 use PHPUnit\Framework\TestCase;
 
 class ConfigTest extends TestCase
 {
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_1(): void
     {
@@ -25,7 +25,7 @@ class ConfigTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_2(): void
     {
@@ -34,7 +34,7 @@ class ConfigTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_3(): void
     {
@@ -52,7 +52,7 @@ class ConfigTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_invalid(): void
     {

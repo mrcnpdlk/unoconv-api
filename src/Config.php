@@ -10,14 +10,12 @@ namespace Mrcnpdlk\Api\Unoconv;
 
 use Mrcnpdlk\Api\Unoconv\Enum\DocType;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
-use Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException;
-use Psr\Log\LoggerInterface;
-use Psr\Log\NullLogger;
+use Mrcnpdlk\Lib\ConfigurationOptionsAbstract;
 
 /**
  * Class Config
  */
-class Config
+class Config extends ConfigurationOptionsAbstract
 {
     /**
      * @var string
@@ -78,25 +76,13 @@ class Config
      *
      * @param array $config
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function __construct(array $config = [])
     {
         $this->docType = DocType::DOCUMENT();
         $this->format  = FormatType::PDF();
-        /* @noinspection PhpUndefinedClassInspection */
-        $this->logger = new NullLogger();
-
-        foreach ($config as $key => $value) {
-            $funName = sprintf('set%s', ucfirst($key));
-            if (method_exists($this, $funName)) {
-                $this->$funName($value);
-            } elseif (property_exists($this, $key)) {
-                $this->{$key} = $value;
-            } else {
-                throw new ConfigurationException(sprintf('Property "%s" not defined in Config class "%s"', $key, __CLASS__));
-            }
-        }
+        parent::__construct($config);
     }
 
     /**
@@ -121,16 +107,6 @@ class Config
     public function getFormat(): FormatType
     {
         return $this->format;
-    }
-
-    /** @noinspection PhpUndefinedClassInspection */
-
-    /**
-     * @return \Psr\Log\LoggerInterface
-     */
-    public function getLogger(): LoggerInterface
-    {
-        return $this->logger;
     }
 
     /**
@@ -193,20 +169,6 @@ class Config
     public function setHost(string $host): self
     {
         $this->host = $host;
-
-        return $this;
-    }
-
-    /** @noinspection PhpUndefinedClassInspection */
-
-    /**
-     * @param \Psr\Log\LoggerInterface $logger
-     *
-     * @return $this
-     */
-    public function setLogger(LoggerInterface $logger): self
-    {
-        $this->logger = $logger;
 
         return $this;
     }

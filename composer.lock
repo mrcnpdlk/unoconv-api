@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dff1168296c2a35108f3ff47ff568914",
+    "content-hash": "02f96a3ce5c40373110ed94fa018ed5c",
     "packages": [
         {
             "name": "mikehaertl/php-shellcommand",
@@ -44,6 +44,82 @@
                 "shell"
             ],
             "time": "2018-07-07T07:35:36+00:00"
+        },
+        {
+            "name": "mrcnpdlk/lib-configuration",
+            "version": "0.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrcnpdlk/lib-configuration.git",
+                "reference": "e733bef07d53e1cdbe48b6304a9fe6e04caa4b76"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mrcnpdlk/lib-configuration/zipball/e733bef07d53e1cdbe48b6304a9fe6e04caa4b76",
+                "reference": "e733bef07d53e1cdbe48b6304a9fe6e04caa4b76",
+                "shasum": ""
+            },
+            "require": {
+                "mrcnpdlk/lib-exception": "^0",
+                "php": ">=7.2",
+                "psr/log": "^1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mrcnpdlk\\Lib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Pudełek",
+                    "email": "marcin@pudelek.org.pl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Configuration Option Library",
+            "time": "2019-03-30T19:37:40+00:00"
+        },
+        {
+            "name": "mrcnpdlk/lib-exception",
+            "version": "0.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mrcnpdlk/lib-exception.git",
+                "reference": "159747cd0c8b8db97a26236aa00559666ce209ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mrcnpdlk/lib-exception/zipball/159747cd0c8b8db97a26236aa00559666ce209ff",
+                "reference": "159747cd0c8b8db97a26236aa00559666ce209ff",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mrcnpdlk\\Lib\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcin Pudełek",
+                    "email": "marcin@pudelek.org.pl",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Exception Library",
+            "time": "2019-03-30T19:11:27+00:00"
         },
         {
             "name": "myclabs/php-enum",
@@ -247,16 +323,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "v1.6.0",
+            "version": "v1.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5"
+                "reference": "53120e0eb10355388d6ccbe462f1fea34ddadb24"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5",
-                "reference": "c7f2050c68a9ab0bdb0f98567ec08d80ea7d24d5",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/53120e0eb10355388d6ccbe462f1fea34ddadb24",
+                "reference": "53120e0eb10355388d6ccbe462f1fea34ddadb24",
                 "shasum": ""
             },
             "require": {
@@ -311,7 +387,7 @@
                 "docblock",
                 "parser"
             ],
-            "time": "2017-12-06T07:11:42+00:00"
+            "time": "2019-03-25T19:12:02+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -1004,24 +1080,21 @@
         },
         {
             "name": "nette/php-generator",
-            "version": "v3.2.1",
+            "version": "v3.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/php-generator.git",
-                "reference": "9de4e093a130f7a1bd175198799ebc0efbac6924"
+                "reference": "acff8b136fad84b860a626d133e791f95781f9f5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/php-generator/zipball/9de4e093a130f7a1bd175198799ebc0efbac6924",
-                "reference": "9de4e093a130f7a1bd175198799ebc0efbac6924",
+                "url": "https://api.github.com/repos/nette/php-generator/zipball/acff8b136fad84b860a626d133e791f95781f9f5",
+                "reference": "acff8b136fad84b860a626d133e791f95781f9f5",
                 "shasum": ""
             },
             "require": {
                 "nette/utils": "^2.4.2 || ~3.0.0",
                 "php": ">=7.1"
-            },
-            "conflict": {
-                "nette/nette": "<2.2"
             },
             "require-dev": {
                 "nette/tester": "^2.0",
@@ -1062,7 +1135,7 @@
                 "php",
                 "scaffolding"
             ],
-            "time": "2018-11-27T19:00:14+00:00"
+            "time": "2019-03-15T03:41:13+00:00"
         },
         {
             "name": "nette/robot-loader",
@@ -1773,16 +1846,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.11.4",
+            "version": "0.11.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "ccc4f854748664cc61d1f3d4ecb26810df1f0cd4"
+                "reference": "24ce5a566a798b81343138ed5d41d6877554cf9a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ccc4f854748664cc61d1f3d4ecb26810df1f0cd4",
-                "reference": "ccc4f854748664cc61d1f3d4ecb26810df1f0cd4",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/24ce5a566a798b81343138ed5d41d6877554cf9a",
+                "reference": "24ce5a566a798b81343138ed5d41d6877554cf9a",
                 "shasum": ""
             },
             "require": {
@@ -1842,7 +1915,7 @@
                 "MIT"
             ],
             "description": "PHPStan - PHP Static Analysis Tool",
-            "time": "2019-03-14T14:46:15+00:00"
+            "time": "2019-03-25T16:40:09+00:00"
         },
         {
             "name": "phpstan/phpstan-phpunit",
@@ -2149,16 +2222,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "7.5.7",
+            "version": "7.5.8",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "eb343b86753d26de07ecba7868fa983104361948"
+                "reference": "c29c0525cf4572c11efe1db49a8b8aee9dfac58a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/eb343b86753d26de07ecba7868fa983104361948",
-                "reference": "eb343b86753d26de07ecba7868fa983104361948",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c29c0525cf4572c11efe1db49a8b8aee9dfac58a",
+                "reference": "c29c0525cf4572c11efe1db49a8b8aee9dfac58a",
                 "shasum": ""
             },
             "require": {
@@ -2229,7 +2302,7 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2019-03-16T07:31:17+00:00"
+            "time": "2019-03-26T13:23:54+00:00"
         },
         {
             "name": "sebastian/code-unit-reverse-lookup",

@@ -7,6 +7,12 @@
 
 namespace Mrcnpdlk\Api\Unoconv;
 
+use CURLFile;
+use const CURLOPT_POST;
+use const CURLOPT_POSTFIELDS;
+use const CURLOPT_RETURNTRANSFER;
+use const CURLOPT_URL;
+use const JSON_ERROR_NONE;
 use mikehaertl\shellcommand\Command;
 use Mrcnpdlk\Api\Unoconv\Enum\FormatType;
 use Mrcnpdlk\Api\Unoconv\Exception\DomainException;
@@ -38,7 +44,7 @@ class Api
      *
      * @param \Mrcnpdlk\Api\Unoconv\Config $oConfig
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function __construct(Config $oConfig = null)
     {
@@ -57,9 +63,9 @@ class Api
      * @param string|null     $destination Path to output file or directory
      * @param array           $exportOpts  Export options
      *
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      *
      * @return SplFileObject
      */
@@ -172,16 +178,16 @@ class Api
         $this->logger->debug(sprintf('Creating "%s" from "%s"', $destination, $sourceFile));
 
         $ch = curl_init();
-        curl_setopt($ch, \CURLOPT_URL, sprintf('%s/unoconv/pdf', $this->ws));
-        curl_setopt($ch, \CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, \CURLOPT_POST, true);
-        curl_setopt($ch, \CURLOPT_POSTFIELDS, ['file' => new \CURLFile($sourceFile)]);
+        curl_setopt($ch, CURLOPT_URL, sprintf('%s/unoconv/pdf', $this->ws));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile($sourceFile)]);
         $output = curl_exec($ch);
         if (false === $output) {
             throw new UnoconvException('Curl error: ' . curl_error($ch));
         }
         $ret = json_decode($output);
-        if (\JSON_ERROR_NONE === json_last_error()) {
+        if (JSON_ERROR_NONE === json_last_error()) {
             throw new UnoconvException('WebService Error: ' . $ret->message);
         }
 
