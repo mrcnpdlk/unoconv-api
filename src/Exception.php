@@ -10,6 +10,6 @@ namespace Mrcnpdlk\Api\Unoconv;
 /**
  * Class Exception
  */
-class Exception extends \Exception
+class Exception extends \Mrcnpdlk\Lib\Exception
 {
 }

@@ -19,7 +19,7 @@ use Psr\Log\NullLogger;
 class ApiTest extends TestCase
 {
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_1(): void
     {
@@ -28,10 +28,10 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_invalid_1(): void
     {
@@ -47,10 +47,10 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_invalid_2(): void
     {
@@ -63,11 +63,10 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception\ConfigurationException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_invalid_3(): void
     {
@@ -86,10 +85,10 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\DomainException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testConstruct_invalid_4(): void
     {
@@ -106,9 +105,9 @@ class ApiTest extends TestCase
     }
 
     /**
-     * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Lib\ConfigurationException
      */
     public function testWs_invalid_1(): void
     {
