@@ -6,6 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.6.0] - 2019-07-01
+### Added:
+- timeout value in config
 ## [0.5.0] - 2019-04-01
 ### Changed
 - external `mrcnpdlk/lib-exception` & `mrcnpdlk/lib-configuration` libs, namespace changes
@@ -35,8 +38,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [0.0.1] - 2019-03-03
 
-[Unreleased]: https://gitlab.widzew.net/php-composer/api-flussonic/compare/0.5.0...devel
-[0.1.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.4.0...0.5.0
+[Unreleased]: https://gitlab.widzew.net/php-composer/api-flussonic/compare/0.6.0...devel
+[0.6.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.5.0...0.6.0
+[0.5.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.4.0...0.5.0
 [0.4.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.3.0...0.4.0
 [0.3.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.2.0...0.3.0
 [0.2.0]: https://github.com/mrcnpdlk/unoconv-api/compare/0.1.1...0.2.0

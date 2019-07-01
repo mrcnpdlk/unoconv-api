@@ -49,6 +49,8 @@ class Config extends ConfigurationOptionsAbstract
      * When unoconv starts its own listener, try to connect to it for an amount of seconds before giving up. Increasing this may help when
      * you receive random errors caused by the listener not being ready to accept conversion jobs.
      *
+     * For unoconv webservice this value is the timeout [sec] for curl request
+     *
      * @var int
      */
     protected $timeout = 30;
