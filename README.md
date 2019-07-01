@@ -48,6 +48,7 @@ $logger->pushHandler(new ErrorLogHandler(ErrorLogHandler::OPERATING_SYSTEM, LogL
 $oConfig = new \Mrcnpdlk\Api\Unoconv\Config([
     'binary' => '/usr/bin/unoconv',
     'logger' => $logger,
+    'timeout'=> 300
 ]);
 $oApi    = new \Mrcnpdlk\Api\Unoconv\Api($oConfig);
 ```
