@@ -7,6 +7,8 @@
 
 namespace Mrcnpdlk\Api\Unoconv;
 
+set_time_limit(0);
+
 use CURLFile;
 use const CURLOPT_POST;
 use const CURLOPT_POSTFIELDS;
@@ -182,11 +184,12 @@ class Api
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile($sourceFile)]);
+        curl_setopt($ch, CURLOPT_TIMEOUT, $this->params['timeout']);
         $output = curl_exec($ch);
         if (false === $output) {
             throw new UnoconvException('Curl error: ' . curl_error($ch));
         }
-        $ret = json_decode($output);
+        $ret = json_decode($output, false);
         if (JSON_ERROR_NONE === json_last_error()) {
             throw new UnoconvException('WebService Error: ' . $ret->message);
         }
