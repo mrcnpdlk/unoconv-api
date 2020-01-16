@@ -40,6 +40,10 @@ class Api
      * @var string
      */
     private $ws;
+    /**
+     * @var \Mrcnpdlk\Api\Unoconv\Config
+     */
+    private $oConfig;
 
     /**
      * Api constructor.
@@ -50,13 +54,13 @@ class Api
      */
     public function __construct(Config $oConfig = null)
     {
-        $oConfig                    = $oConfig ?? new Config();
-        $this->logger               = $oConfig->getLogger();
-        $this->ws                   = $oConfig->getWebservice();
-        $this->params['connection'] = $oConfig->getConnectionString();
-        $this->params['timeout']    = $oConfig->getTimeout();
-        $this->params['docType']    = $oConfig->getDocType();
-        $this->params['format']     = $oConfig->getFormat();
+        $this->oConfig              = $oConfig ?? new Config();
+        $this->logger               = $this->oConfig->getLogger();
+        $this->ws                   = $this->oConfig->getWebservice();
+        $this->params['connection'] = $this->oConfig->getConnectionString();
+        $this->params['timeout']    = $this->oConfig->getTimeout();
+        $this->params['docType']    = $this->oConfig->getDocType();
+        $this->params['format']     = $this->oConfig->getFormat();
     }
 
     /**
@@ -117,11 +121,7 @@ class Api
             } elseif (is_string($value)) {
                 $value = sprintf('"%s"', $value);
             } elseif (!is_int($value)) {
-                throw new DomainException(
-                    sprintf('Invalid type of export argument "%s", only %s are allowed.',
-                        gettype($value),
-                        implode(',', ['int', 'string', 'bool']))
-                );
+                throw new DomainException(sprintf('Invalid type of export argument "%s", only %s are allowed.', gettype($value), implode(',', ['int', 'string', 'bool'])));
             }
 
             $command->addArg('--export', sprintf('%s=%s', $key, $value), false);
@@ -147,6 +147,7 @@ class Api
      *
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception
      *
      * @return \SplFileObject
      */
@@ -177,24 +178,35 @@ class Api
             );
         }
 
-        $this->logger->debug(sprintf('Creating "%s" from "%s"', $destination, $sourceFile));
-
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, sprintf('%s/unoconv/pdf', $this->ws));
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, ['file' => new CURLFile($sourceFile)]);
         curl_setopt($ch, CURLOPT_TIMEOUT, $this->params['timeout']);
-        $output = curl_exec($ch);
-        if (false === $output) {
-            throw new UnoconvException('Curl error: ' . curl_error($ch));
-        }
-        $ret = json_decode($output, false);
-        if (JSON_ERROR_NONE === json_last_error()) {
-            throw new UnoconvException('WebService Error: ' . $ret->message);
+
+        $output   = null;
+        $maxLoops = $this->oConfig->getMaxLoop();
+        for ($iLoop = 0; true; ++$iLoop) {
+            $this->logger->debug(sprintf('Creating "%s" from "%s" [loop #%d]', $destination, $sourceFile, $iLoop + 1));
+
+            $output = curl_exec($ch);
+            if (false === $output) {
+                throw new UnoconvException('Curl error: ' . curl_error($ch));
+            }
+            $ret = json_decode($output, false);
+            /*
+             * Fix: sometime the first request is with error
+             */
+            if ($iLoop >= $maxLoops && JSON_ERROR_NONE === json_last_error()) {
+                throw new UnoconvException('WebService Error: ' . $ret->message);
+            }
         }
 
         curl_close($ch);
+        if (null === $output) {
+            throw new Exception('WTF. Output is NULL');
+        }
         file_put_contents($destination, $output);
 
         return new SplFileObject($destination);
