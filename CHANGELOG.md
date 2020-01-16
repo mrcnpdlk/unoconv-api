@@ -6,6 +6,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.7.0] - 2020-01-16
+### Added:
+- gitlabci
+- `wsGetPdf` with loop
+
 ## [0.6.0] - 2019-07-01
 ### Added:
 - timeout value in config

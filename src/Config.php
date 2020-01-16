@@ -71,6 +71,12 @@ class Config extends ConfigurationOptionsAbstract
      * @var string
      */
     protected $webservice = 'http://localhost:3000';
+    /**
+     * Max loop couter for
+     *
+     * @var int
+     */
+    protected $maxLoop = 3;
 
     /**
      * Config constructor.
@@ -104,42 +110,6 @@ class Config extends ConfigurationOptionsAbstract
     }
 
     /**
-     * @return FormatType
-     */
-    public function getFormat(): FormatType
-    {
-        return $this->format;
-    }
-
-    /**
-     * @return int
-     */
-    public function getTimeout(): int
-    {
-        return $this->timeout;
-    }
-
-    /**
-     * @return string
-     */
-    public function getWebservice(): string
-    {
-        return $this->webservice;
-    }
-
-    /**
-     * @param string $binary
-     *
-     * @return $this
-     */
-    public function setBinary(string $binary): self
-    {
-        $this->binary = $binary;
-
-        return $this;
-    }
-
-    /**
      * @param DocType $docType
      *
      * @return $this
@@ -152,6 +122,14 @@ class Config extends ConfigurationOptionsAbstract
     }
 
     /**
+     * @return FormatType
+     */
+    public function getFormat(): FormatType
+    {
+        return $this->format;
+    }
+
+    /**
      * @param FormatType $format
      *
      * @return $this
@@ -159,6 +137,78 @@ class Config extends ConfigurationOptionsAbstract
     public function setFormat(FormatType $format): self
     {
         $this->format = $format;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxLoop(): int
+    {
+        return $this->maxLoop;
+    }
+
+    /**
+     * @param int $maxLoop
+     *
+     * @return $this
+     */
+    public function setMaxLoop(int $maxLoop): self
+    {
+        $this->maxLoop = $maxLoop;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getTimeout(): int
+    {
+        return $this->timeout;
+    }
+
+    /**
+     * @param int $timeout
+     *
+     * @return $this
+     */
+    public function setTimeout(int $timeout): self
+    {
+        $this->timeout = $timeout;
+
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getWebservice(): string
+    {
+        return $this->webservice;
+    }
+
+    /**
+     * @param string $webservice
+     *
+     * @return Config
+     */
+    public function setWebservice(string $webservice): Config
+    {
+        $this->webservice = $webservice;
+
+        return $this;
+    }
+
+    /**
+     * @param string $binary
+     *
+     * @return $this
+     */
+    public function setBinary(string $binary): self
+    {
+        $this->binary = $binary;
 
         return $this;
     }
@@ -183,30 +233,6 @@ class Config extends ConfigurationOptionsAbstract
     public function setPort(int $port): self
     {
         $this->port = $port;
-
-        return $this;
-    }
-
-    /**
-     * @param int $timeout
-     *
-     * @return $this
-     */
-    public function setTimeout(int $timeout): self
-    {
-        $this->timeout = $timeout;
-
-        return $this;
-    }
-
-    /**
-     * @param string $webservice
-     *
-     * @return Config
-     */
-    public function setWebservice(string $webservice): Config
-    {
-        $this->webservice = $webservice;
 
         return $this;
     }
