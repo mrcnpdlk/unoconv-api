@@ -194,14 +194,18 @@ class Api
             if (false === $output) {
                 throw new UnoconvException('Curl error: ' . curl_error($ch));
             }
+
             $ret = json_decode($output, false);
+            if (JSON_ERROR_NONE !== json_last_error()) {
+                break;
+            }
             /*
              * Fix: sometime the first request is with error
              */
-            if (($iLoop >= $maxLoops) && (JSON_ERROR_NONE === json_last_error())) {
-                $this->logger->debug(sprintf('Creating "%s" from "%s" [loop #%d] - restarting request', $destination, $sourceFile, $iLoop + 1));
+            if ($iLoop >= $maxLoops) {
                 throw new UnoconvException('WebService Error: ' . $ret->message);
             }
+            $this->logger->debug(sprintf('Creating "%s" from "%s" [loop #%d] - restarting request', $destination, $sourceFile, $iLoop + 1));
         }
 
         curl_close($ch);
