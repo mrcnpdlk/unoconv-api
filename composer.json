@@ -33,8 +33,8 @@
     "mikehaertl/php-shellcommand": "^1"
   },
   "require-dev": {
-    "phpunit/phpunit": "^7",
-    "phpunit/php-code-coverage": "^6",
+    "phpunit/phpunit": "^8",
+    "phpunit/php-code-coverage": "^7",
     "friendsofphp/php-cs-fixer": "^2",
     "phpstan/phpstan": "^0",
     "phpstan/phpstan-phpunit": "^0",

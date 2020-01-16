@@ -105,6 +105,7 @@ class ApiTest extends TestCase
     }
 
     /**
+     * @throws \Mrcnpdlk\Api\Unoconv\Exception
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\InvalidFileArgumentException
      * @throws \Mrcnpdlk\Api\Unoconv\Exception\UnoconvException
      * @throws \Mrcnpdlk\Lib\ConfigurationException

@@ -192,7 +192,6 @@ class Api
 
             $output = curl_exec($ch);
             if (false === $output) {
-                curl_close($ch);
                 throw new UnoconvException('Curl error: ' . curl_error($ch));
             }
             $ret = json_decode($output, false);
@@ -200,7 +199,6 @@ class Api
              * Fix: sometime the first request is with error
              */
             if ($iLoop >= $maxLoops && JSON_ERROR_NONE === json_last_error()) {
-                curl_close($ch);
                 throw new UnoconvException('WebService Error: ' . $ret->message);
             }
         }
