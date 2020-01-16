@@ -198,7 +198,8 @@ class Api
             /*
              * Fix: sometime the first request is with error
              */
-            if ($iLoop >= $maxLoops && JSON_ERROR_NONE === json_last_error()) {
+            if (($iLoop >= $maxLoops) && (JSON_ERROR_NONE === json_last_error())) {
+                $this->logger->debug(sprintf('Creating "%s" from "%s" [loop #%d] - restarting request', $destination, $sourceFile, $iLoop + 1));
                 throw new UnoconvException('WebService Error: ' . $ret->message);
             }
         }
